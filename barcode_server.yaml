@@ -1,0 +1,43 @@
+barcode_server:
+
+  # (optional) the verbosity level of log output
+  log_level: DEBUG
+
+  # (optional) an identifier for this barcode-server instance
+  # if omitted, this will be a UUIDv4
+  id: cash-register-1
+
+  # (optional) server configuration
+  server:
+    # (optional) the IP address to listen on for incoming connections
+    host: "127.0.0.1"
+    # (optional) the Port to listen on
+    port: 9654
+    # (optional) API-Token which has to be provided by connecting clients
+    api_token: "EmUSqjXGfnQwn5wn6CpzJRZgoazMTRbMNgH7CXwkQG7Ph7stex"
+
+  # (optional) Time period to retry delivering failed queued events before giving up and dropping the event
+  drop_event_queue_after: 2h
+  # (optional) Time to wait between retries
+  retry_interval: 2s
+
+  # (optional) HTTP push configuration
+  http:
+    # URL to send events to using a request
+    url: "http://alpha-sport.uz/api/v1/qr-code/create"
+    # The request method to use
+    method: POST
+    # Headers to set on each request
+    headers:
+      - "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjbGFpbSI6ICJiYXJjb2RlLWFwaS10b2tlbiJ9.Ukr_HZnr9b5jGsD1W8pnQuWMRa-8tK_gq3tJzMdVw_s"
+  # A list of regex patterns to match USB device names against
+  devices:
+    - ".*Barcode.*"
+  # A list of absolute file paths to devices
+  device_paths:
+  #- "/dev/input/barcode_scanner"
+
+  # (optional) Statistics configuration
+  stats:
+    # (optional) port to provide statistics on
+    port: 8000
